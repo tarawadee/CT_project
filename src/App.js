@@ -1,9 +1,23 @@
-import React from 'react';
 
+import React, { Component } from 'react'
 import Login from "./Layout/Login";
+import Home from "./Layout/Home";
+import { Route } from 'react-router-dom'
 
-const App = props => {
-  return <Login />;
-};
 
-export default App;
+
+class App extends Component {
+    render() {
+        return (
+            <div>
+
+                <Route exact path="/" component={Login} />
+                <Route exact path="/home" component={Home} />
+
+
+            </div>
+        )
+    }
+}
+
+export default App
