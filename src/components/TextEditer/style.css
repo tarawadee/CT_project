@@ -1,0 +1,24 @@
+h1, p {
+    font-family: Lato;
+}
+
+.RichEditor-editor{
+    border: 1px solid dodgerblue;
+    /* height: 350px !important; */
+    max-height: auto;
+    padding: 0.4em;
+    margin-top: 1em;
+}
+
+.RichEditor-controls span{
+    padding: 5px;
+    margin: 0.4em !important;
+}
+
+.RichEditor-controls{
+    display: inline;
+}
+
+.side-padding-20{
+    padding: 0 20px;
+}
