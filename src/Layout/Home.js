@@ -28,8 +28,14 @@ function Home() {
     const [tag, settag] = useState('');
     const [detail, setdetail] = useState('');
     const history = useHistory();
+    const sucess = () => {
+
+        history.push("/");
+        console.log("link")
+    }
     const postnew = (title, tag,detail) => {
-        return db.collection('Post')
+
+         db.collection('Post')
             .add({
 
                  title: title,
@@ -38,8 +44,9 @@ function Home() {
                  created: firebase.firestore.FieldValue.serverTimestamp(),
 
             });
-        history.push('/')
-        };
+
+        sucess()
+    };
 
 
 
