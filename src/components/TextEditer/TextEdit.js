@@ -173,7 +173,7 @@ class TextEdit extends React.Component {
         }
         return (
             <div>
-                <div className="RichEditor-root">
+                <div className="RichEditor-root  this.props">
                     <BlockStyleControls
                         editorState={editorState}
                         onToggle={this.toggleBlockType}
