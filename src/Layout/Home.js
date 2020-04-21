@@ -2,24 +2,7 @@
 import React, { useState } from 'react';
 import Card from "../components/UI/Card";
 import { useHistory } from 'react-router-dom';
-
-
-import * as firebase from "firebase/app";
-import "firebase/firestore";
-
-export var firebaseConfig = {
-    apiKey: "AIzaSyBrCftH0OX1dg1up7vQ5RjkN60xd-KkXlc",
-    authDomain: "cswf-c8291.firebaseapp.com",
-    databaseURL: "https://cswf-c8291.firebaseio.com",
-    projectId: "cswf-c8291",
-    storageBucket: "cswf-c8291.appspot.com",
-    messagingSenderId: "344093463637",
-    appId: "1:344093463637:web:a0643578d21939dacd70dc",
-    measurementId: "G-JCCL3W6WQB"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
+import { createPost } from '../Firebase/Base'
 
 function Home() {
 
@@ -28,25 +11,12 @@ function Home() {
     const [tag, settag] = useState('');
     const [detail, setdetail] = useState('');
     const history = useHistory();
-    const sucess = () => {
-
+    const sucess = (title,tag,detail) => {
+        createPost(title,tag,detail)
         history.push("/");
         console.log("link")
     }
-    const postnew = (title, tag,detail) => {
 
-         db.collection('Post')
-            .add({
-
-                 title: title,
-                 tag: tag,
-                 detail: detail,
-                 created: firebase.firestore.FieldValue.serverTimestamp(),
-
-            });
-
-        sucess()
-    };
 
 
 
@@ -78,7 +48,7 @@ function Home() {
 
 
                     <div className="logint-form__actions">
-                        <button onClick={() =>postnew(title,tag,detail)} >Preview</button>
+                        <button onClick={() =>sucess(title,tag,detail)} >Preview</button>
                     </div>
 
 

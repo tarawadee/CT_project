@@ -1,44 +1,89 @@
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Card from "../components/UI/Card";
-import * as firebase from "firebase/app";
-import "firebase/firestore";
+import { getdataPost } from '../Firebase/Base'
+import axios from 'axios';
+function Post(props) {
 
-// export var firebaseConfig = {
-//     apiKey: "AIzaSyBrCftH0OX1dg1up7vQ5RjkN60xd-KkXlc",
-//     authDomain: "cswf-c8291.firebaseapp.com",
-//     databaseURL: "https://cswf-c8291.firebaseio.com",
-//     projectId: "cswf-c8291",
-//     storageBucket: "cswf-c8291.appspot.com",
-//     messagingSenderId: "344093463637",
-//     appId: "1:344093463637:web:a0643578d21939dacd70dc",
-//     measurementId: "G-JCCL3W6WQB"
-// };
-// firebase.initializeApp(firebaseConfig);
-// const db = firebase.firestore();
+    const [data, setData] = useState({ covid: [] });
+    const [ Post, setPost ] = useState({ post: [] });
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios(
+                'https://covid19.th-stat.com/api/open/today',
+            );
+
+            setData({
+                covid: result.data
+            });
+        };
+
+        fetchData();
+    }, []);
+    useEffect(() => {
+
+        const unsubscribe = getdataPost.onSnapshot(ss => {
+
+            let Post = [];
+
+            ss.forEach(document => {
+
+               Post[document.id] = document.data()
+            })
 
 
-function Post() {
+            setPost(Post)
+        })
 
+        return () => {
+
+            unsubscribe()
+        }
+    }, [])
+
+
+    const post = Object.entries(Post).map(([key, value]) => ({key, ...value}));
 
 
 
     return (
+
         <div className="login-form">
 
 
             <Card>
                 <h1>
-                    title
+                    NewConfirmed
+                    {data.covid.NewConfirmed}
 
                 </h1>
                 <p>
-                   tag
+                    Recovered
+                    {data.covid.Recovered}
                 </p>
+                <p>
+                    Confirmed
+                    {data.covid.Confirmed}
+                </p>
+                <p>
+                    {data.covid.Hospitalized}
+                </p>
+
                 <h5>
-                   detail
+                    {data.covid.Deaths}
                 </h5>
             </Card>
+            <div>
+                { post.map( post => (
+                    <Card key={post}>
+                        <h1>{post.title}</h1>
+                        <p>{post.tag}</p>
+                        <p>{post.detail}</p>
+                    </Card>
+                    ))}
+            </div>
+
 
         </div>
     );
