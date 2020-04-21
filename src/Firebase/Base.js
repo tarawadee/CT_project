@@ -1,6 +1,7 @@
 import * as firebase from "firebase/app";
 import "firebase/firestore";
-import "firebase/auth";
+import "firebase/auth"
+import "firebase/storage";
 import {useEffect, useState} from "react";
 
 const firebaseConfig = {
@@ -15,27 +16,26 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+let db = firebase.firestore();
 
 export const authenticateAnonymously = () => {
     return firebase.auth().signInAnonymously();
 };
 
-export const createPost = (title, tag,detail,) => {
+export const createPost = (title, tag,detail,url) => {
     return db.collection('Post')
         .add({
             title: title,
             tag: tag,
             detail: detail,
+            url: url,
             created: firebase.firestore.FieldValue.serverTimestamp(),
         });
 };
 
-export const getdataPost = db.collection('Post')
+export const getdataPost = db.collection('Post');
 
-export const getGroceryListItems = groceryListId => {
-    return db.collection('Post')
-        .doc(groceryListId)
-        .collection('created')
-        .get();
-};
+
+export const storage = firebase.storage();
+
+

@@ -93,11 +93,11 @@ function Post(props) {
             <div>
                 { post.map( post => (
 
-                    <Card className={classes.root} key={post}>
+                    <Card className={classes.root} key={post} h1 style={{margin:10}} >
                         <CardActionArea>
                             <CardMedia
                                 className={classes.media}
-                                image="/static/images/cards/contemplative-reptile.jpg"
+                                image={post.url}
                                 title="Contemplative Reptile"
                             />
                             <CardContent>
