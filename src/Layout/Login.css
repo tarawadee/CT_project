@@ -3,6 +3,11 @@
     margin: 2rem auto;
     max-width: 80%;
 }
+.post-form {
+    width: 30rem;
+    margin: 2rem auto;
+    max-width: 90%;
+}
 
 .form-control label,
 .form-control input {

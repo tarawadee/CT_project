@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import Card from "../components/UI/Card";
+import Card from '@material-ui/core/Card';
 import { useHistory } from 'react-router-dom';
 import { createPost,storage } from '../Firebase/Base'
 

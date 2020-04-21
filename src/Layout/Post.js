@@ -1,15 +1,15 @@
-
+import cx from 'clsx';
 import React, { useState,useEffect } from 'react';
 import { getdataPost } from '../Firebase/Base'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import Covid from "../components/covid";
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import axios from 'axios';
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
@@ -17,25 +17,18 @@ const useStyles = makeStyles({
     media: {
         height: 140,
     },
+    card: {
+        borderRadius: 12,
+        minWidth: 256,
+        textAlign: 'center',
+    },
 });
 function Post(props) {
     const classes = useStyles();
-    const [data, setData] = useState({ covid: [] });
+
     const [ Post, setPost ] = useState({ post: [] });
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios(
-                'https://covid19.th-stat.com/api/open/today',
-            );
 
-            setData({
-                covid: result.data
-            });
-        };
-
-        fetchData();
-    }, []);
     useEffect(() => {
 
         const unsubscribe = getdataPost.onSnapshot(ss => {
@@ -64,36 +57,14 @@ function Post(props) {
 
     return (
 
-        <div className="login-form">
+        <div className="post-form">
 
-
-            <Card>
-                <h1>
-                    NewConfirmed
-                    {data.covid.NewConfirmed}
-
-                </h1>
-                <p>
-                    Recovered
-                    {data.covid.Recovered}
-                </p>
-                <p>
-                    Confirmed
-                    {data.covid.Confirmed}
-                </p>
-                <p>
-                    {data.covid.Hospitalized}
-                </p>
-
-                <h5>
-                    {data.covid.Deaths}
-                </h5>
-            </Card>
+            <Covid/>
 
             <div>
                 { post.map( post => (
 
-                    <Card className={classes.root} key={post} h1 style={{margin:10}} >
+                    <Card className={cx(classes.card)} key={post} h1 style={{marginTop:5}} >
                         <CardActionArea>
                             <CardMedia
                                 className={classes.media}

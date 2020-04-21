@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.11",
+    "@mui-treasury/components": "^1.0.1",
     "axios": "^0.19.2",
     "babel-polyfill": "^6.26.0",
+    "clsx": "^1.1.0",
     "draft-js": "^0.11.5",
     "firebase": "^6.0.2",
     "moment": "^2.24.0",
