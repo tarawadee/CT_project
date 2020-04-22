@@ -1,26 +1,35 @@
 import React from 'react';
-
+import { useHistory } from 'react-router-dom';
+import { createPost,storage } from '../Firebase/Base'
 import Card from "../components/UI/Card";
 import './Login.css'
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+function Login()
+{
+    const uiConfig = {
 
-function Login() {
+        signInFlow: 'popup',
+
+        signInOptions: [
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+            firebase.auth.GithubAuthProvider.PROVIDER_ID,
+            firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        ],
+        callbacks: {
+            // Avoid redirects after sign-in.
+            signInSuccess: () => false
+        }
+    }
     return (
         <div className="login-form">
            <Card>
-               <form >
-                   <div className="form-control">
-                       <label htmlFor="title">Name</label>
-                       <input type="text" id="title" />
-                   </div>
-                   <div className="form-control">
-                       <label htmlFor="amount">Password</label>
-                       <input type="password" id="amount" />
-                   </div>
-                   <div className="logint-form__actions">
-                       <button type="submit">Login</button>
-                   </div>
 
-               </form>
+               <p>Please sign-in:</p>
+               <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
            </Card>
         </div>
     );
