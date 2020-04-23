@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { createPost,storage } from '../Firebase/Base'
 import Card from "../components/UI/Card";
@@ -6,8 +6,11 @@ import './Login.css'
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+
 function Login()
 {
+    const history = useHistory();
+    const [user, setuser] = useState('');
     const uiConfig = {
 
         signInFlow: 'popup',
@@ -24,12 +27,31 @@ function Login()
             signInSuccess: () => false
         }
     }
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(user => {
+            setuser(user);
+            console.log("user", user)
+            if(user!=null){
+                history.push("/");
+            }
+
+        })
+    });
+    const logout = () => {
+        firebase.auth().signOut().then(response => {
+            setuser(null)
+            })
+        }
+
+
+
     return (
         <div className="login-form">
            <Card>
-
+               {/*<h1>{user.displayName}</h1>*/}
                <p>Please sign-in:</p>
                <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+               <button onClick={logout} >logout</button>
            </Card>
         </div>
     );
