@@ -1,18 +1,16 @@
 
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import { createPost,storage } from '../Firebase/Base'
-import { getdataPost } from '../Firebase/Base'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import Covid from "../components/covid";
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import cx from "clsx";
+import firebase from "firebase";
+
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
@@ -32,13 +30,14 @@ function Home() {
     const [title, settitle] = useState('');
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
+    const [user, setuser] = useState('');
     const [progress, setProgress] = useState(0);
     const [error, setError] = useState("");
     const [tag, settag] = useState('');
     const [detail, setdetail] = useState('');
     const history = useHistory();
-    const sucess = (title,tag,detail,url) => {
-        createPost(title,tag,detail,url)
+    const sucess = (title,tag,detail,url,photoURL,uid,displayName) => {
+        createPost(title,tag,detail,url,photoURL,uid,displayName)
         history.push("/");
         console.log("link")
     }
@@ -86,7 +85,13 @@ function Home() {
             setError("Error please choose an image to upload");
         }
     };
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(user => {
+            setuser(user);
+            console.log("user", user)
 
+        })
+    });
 
 
 
@@ -129,7 +134,7 @@ function Home() {
 
 
                     <div className="logint-form__actions">
-                        <button onClick={() =>sucess(title,tag,detail,url)} >Preview</button>
+                        <button onClick={() =>sucess(title,tag,detail,url,user.photoURL,user.uid,user.displayName)} >Preview</button>
                     </div>
 
 

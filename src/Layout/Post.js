@@ -10,6 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
@@ -22,6 +23,10 @@ const useStyles = makeStyles({
         minWidth: 256,
         textAlign: 'center',
     },
+    av: {
+        display: 'flex',
+
+    }
 });
 function Post(props) {
     const classes = useStyles();
@@ -66,6 +71,10 @@ function Post(props) {
 
                     <Card className={cx(classes.card)} key={post} h1 style={{marginTop:5}} >
                         <CardActionArea>
+                            <div className={classes.av}>
+                            <Avatar alt="Remy Sharp" src={post.photoURL}  style={{margin:5}}/>
+                            <p style={{margin:10}}>{post.displayName}</p>
+                            </div>
                             <CardMedia
                                 className={classes.media}
                                 image={post.url}

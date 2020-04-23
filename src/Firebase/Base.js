@@ -22,13 +22,16 @@ export const authenticateAnonymously = () => {
     return firebase.auth().signInAnonymously();
 };
 
-export const createPost = (title, tag,detail,url) => {
+export const createPost = (title,tag,detail,url,photoURL,uid,displayName) => {
     return db.collection('Post')
         .add({
             title: title,
             tag: tag,
             detail: detail,
             url: url,
+            photoURL:photoURL,
+            uid:uid,
+            displayName:displayName,
             created: firebase.firestore.FieldValue.serverTimestamp(),
         });
 };
