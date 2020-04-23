@@ -37,9 +37,18 @@ export const createPost = (title,tag,detail,url,photoURL,uid,displayName) => {
 };
 
 export const getdataPost = db.collection('Post');
+export const getpostbyid = (id) =>{
+    return db.collection('Post').doc(id).get()
 
-export const Delete =() => {
-    return firebase.database().ref('Post').child('tMMfKfa9UZ2gQlfP19yl').remove()
+}
+export const Delete =(key) => {
+  return  firebase.database().ref("Post/"+key).remove().then(function() {
+      console.log("Remove succeeded.")
+  })
+      .catch(function(error) {
+          console.log("Remove failed: " + error.message)
+      });
+
 }
 export const storage = firebase.storage();
 
