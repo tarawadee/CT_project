@@ -1,20 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import { getpostbyid } from '../Firebase/Base'
 import { useLocation } from 'react-router-dom';
-import {
-    Root,
-    Header,
-    Sidebar,
-    CollapseBtn,
-    CollapseIcon,
-    SidebarTrigger,
-    SidebarTriggerIcon,
-    Content,
-    Footer,
-} from '@mui-treasury/layout';
+import CardMedia from '@material-ui/core/CardMedia';
 
-import { createMuiTheme } from '@material-ui/core/styles';
+import {createMuiTheme, makeStyles} from '@material-ui/core/styles';
 import firebase from "firebase";
+import Card from "@material-ui/core/Card";
+import cx from "clsx";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+
 
 
 const customTheme = createMuiTheme({
@@ -42,7 +38,19 @@ const config = {
         persistentBehavior: 'flexible',
     },
 };
-
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 345,
+    },
+    media: {
+        height: 140,
+    },
+    card: {
+        borderRadius: 12,
+        minWidth: 256,
+        textAlign: 'center',
+    },
+});
 function Singleblog(props) {
 
     const location = useLocation();
@@ -50,7 +58,7 @@ function Singleblog(props) {
     const [Params, setParams] = useState('');
     const [Post, setPost] = useState('');
     let { documentId } = match.params
-
+    const classes = useStyles();
     useEffect(() => {
         getpostbyid(documentId).then((docRef) => {
             setPost(docRef.data())
@@ -60,17 +68,29 @@ function Singleblog(props) {
     });
 
     return (
-        <Root theme={customTheme} config={config}>
+        <div>
+            <Card className={cx(classes.card)}  style={{marginTop:5}}>
 
-                <>
+                <CardActionArea>
 
-                    <Content>
-                    <h1>{Post.title}</h1>
-                    </Content>
+                    <CardMedia
+                        className={classes.media}
+                        image={Post.url}
+                        title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                        <h1>{Post.title}</h1>
+                        <p>{Post.detail}</p>
+                    </CardContent>
+                </CardActionArea>
 
-                </>
 
-        </Root>
+
+
+
+
+            </Card>
+        </div>
     );
 }
 
