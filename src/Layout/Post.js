@@ -11,10 +11,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import Collapse from '@material-ui/core/Collapse';
+import Grid from '@material-ui/core/Grid';
 import firebase from "firebase";
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
+        flexGrow: 1,
     },
     media: {
         height: 140,
@@ -34,7 +36,11 @@ function Post(props) {
 
     const [ Post, setPost ] = useState({ post: [] });
     const [checkuser, setcheckuser] = useState('');
+    const [expanded, setExpanded] = useState(false);
 
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
     useEffect(() => {
 
         const unsubscribe = getdataPost.onSnapshot(ss => {
@@ -73,10 +79,11 @@ function Post(props) {
 
             <Covid/>
 
-            <div>
-                { post.map( post => (
+            <Grid container spacing={1} style={{marginTop:5}} >
 
-                    <Card className={cx(classes.card)} key={post} h1 style={{marginTop:5}} >
+                { post.map( post => (
+                    <Grid item xs={12} sm={3} >
+                    <Card className={cx(classes.card)} key={post}  style={{marginTop:5}} >
                         <CardActionArea>
                             <div className={classes.av}>
                             <Avatar alt="Remy Sharp" src={post.photoURL}  style={{margin:5}}/>
@@ -92,7 +99,7 @@ function Post(props) {
                                     {post.title}
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    {post.detail}
+                                    {post.tag}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -105,17 +112,34 @@ function Post(props) {
                                <p></p>
                             )}
 
-                            <Button size="small" color="primary">
+                            <Button size="small" color="primary"
+                                    onClick={handleExpandClick}
+                                    aria-expanded={expanded}
+                                    aria-label="show more"
+                            >
                                 Learn More
                             </Button>
                         </CardActions>
-                    </Card>
+                        <Collapse in={expanded} timeout="auto" >
+                            <CardContent>
+                                <Typography paragraph>
+                                    {post.detail}
+                                </Typography>
 
+
+                            </CardContent>
+                        </Collapse>
+                    </Card>
+                    </Grid>
                     ))}
-            </div>
+
+
+            </Grid>
 
 
         </div>
+
+
     );
 }
 
