@@ -1,6 +1,6 @@
 import cx from 'clsx';
 import React, { useState,useEffect } from 'react';
-import { getdataPost } from '../Firebase/Base'
+import { getdataPost,Delete } from '../Firebase/Base'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Covid from "../components/covid";
@@ -11,6 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import firebase from "firebase";
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
@@ -32,7 +33,7 @@ function Post(props) {
     const classes = useStyles();
 
     const [ Post, setPost ] = useState({ post: [] });
-
+    const [checkuser, setcheckuser] = useState('');
 
     useEffect(() => {
 
@@ -54,10 +55,16 @@ function Post(props) {
             unsubscribe()
         }
     }, [])
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(user => {
+            setcheckuser(user);
+            console.log("user", user)
 
+        })
+    });
 
     const post = Object.entries(Post).map(([key, value]) => ({key, ...value}));
-
+    console.log(post)
 
 
     return (
@@ -90,9 +97,14 @@ function Post(props) {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <Button size="small" color="primary">
-                                Share
-                            </Button>
+                            {post.uid==checkuser.uid ? (
+                                <Button onClick={ () => Delete()} size="small" color="secondary">
+                                    ลบ
+                                </Button>
+                            ) : (
+                               <p></p>
+                            )}
+
                             <Button size="small" color="primary">
                                 Learn More
                             </Button>

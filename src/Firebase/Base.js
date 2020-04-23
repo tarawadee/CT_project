@@ -38,7 +38,9 @@ export const createPost = (title,tag,detail,url,photoURL,uid,displayName) => {
 
 export const getdataPost = db.collection('Post');
 
-
+export const Delete =() => {
+    return firebase.database().ref('Post').child('tMMfKfa9UZ2gQlfP19yl').remove()
+}
 export const storage = firebase.storage();
 
 
