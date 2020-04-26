@@ -128,15 +128,7 @@ function Post(props) {
                                 Learn More
                             </Button>
                         </CardActions>
-                        <Collapse in={expanded} timeout="auto" >
-                            <CardContent>
-                                <Typography paragraph>
-                                    {post.detail}
-                                </Typography>
 
-
-                            </CardContent>
-                        </Collapse>
                     </Card>
                     </Grid>
                     ))}

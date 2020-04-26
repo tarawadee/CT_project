@@ -42,14 +42,10 @@ export const getpostbyid = (id) =>{
 
 }
 export const Delete =(key) => {
-  return  firebase.database().ref("Post/"+key).remove().then(function() {
-      console.log("Remove succeeded.")
-  })
-      .catch(function(error) {
-          console.log("Remove failed: " + error.message)
-      });
+    return db.collection('Post').doc(key).delete();
 
-}
+    }
+
 export const storage = firebase.storage();
 
 
