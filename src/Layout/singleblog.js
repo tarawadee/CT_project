@@ -49,7 +49,7 @@ function Singleblog(props) {
 
 
      const sendMessage =() => {
-            liff.sendMessage([{
+            liff.sendMessages([{
                 type: 'text',
                 text: "Hi LIFF"
             }]).then(() => {
@@ -99,7 +99,7 @@ function Singleblog(props) {
                     </Typography>
                 </CardContent>
                 <Button size="small" color="primary"
-                        onClick={ () => sendMessage()}
+                        onClick={sendMessage}
                         aria-label="show more"
                 >
                     line share
