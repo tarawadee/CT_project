@@ -70,11 +70,9 @@ class liffHelper {
           liff.sendMessages(messagesToSend)
             .then(() => {
               resolve();
-              console.log("1234")
             })
             .catch((err) => {
               reject(err);
-              console.log("1")
             });
         })
         .catch((err) => {
