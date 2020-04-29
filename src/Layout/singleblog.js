@@ -48,93 +48,94 @@ function Singleblog(props) {
     const [expanded, setExpanded] = React.useState(false);
 
     const line = () => {
-       return(
+
         liff.sendMessages([
             {
                 type: 'flex',
-                altText: 'Flex Message',
+                altText: 'Food Delivery',
                 contents: {
                     type: 'bubble',
                     hero: {
                         type: 'image',
-                        url: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/269/750x450_covid.jpg',
+                        url: 'https://s3-ap-southeast-1.amazonaws.com/img-in-th/17bdc2efae15a634fdbc1d586d958f4c.jpg',
                         size: 'full',
-                        aspectRatio: '20:13',
-                        aspectMode: 'cover',
+                        aspectRatio: '1:1',
+                        backgroundColor: '#d6cd29',
                         action: {
                             type: 'uri',
-                            label: 'Line',
-                            uri: 'https://linecorp.com/'
+                            label: 'Action',
+                            uri: 'https://sproutstory.co/en/eating'
                         }
                     },
                     body: {
                         type: 'box',
-                        layout: 'vertical',
+                        layout: 'horizontal',
+                        spacing: 'md',
                         contents: [
                             {
-                                type: 'text',
-                                text: 'Covid19 Cases',
-                                size: 'xxl',
-                                align: 'center',
-                                weight: 'bold',
-                                color: '#0F9265'
+                                type: 'box',
+                                layout: 'vertical',
+                                flex: 1,
+                                contents: [
+                                    {
+                                        type: 'image',
+                                        url: 'https://s3-ap-southeast-1.amazonaws.com/img-in-th/68987007116cf02b0da2be98db7a9cc4.jpg',
+                                        gravity: 'bottom',
+                                        size: 'sm',
+                                        aspectRatio: '4:3',
+                                        aspectMode: 'cover'
+                                    },
+                                    {
+                                        type: 'image',
+                                        url: 'https://s3-ap-southeast-1.amazonaws.com/img-in-th/c3b90b94e8c605558c02c9a42773ff19.png',
+                                        margin: 'md',
+                                        size: 'sm',
+                                        aspectRatio: '4:3',
+                                        aspectMode: 'cover'
+                                    }
+                                ]
                             },
                             {
                                 type: 'box',
                                 layout: 'vertical',
-                                spacing: 'sm',
-                                margin: 'lg',
+                                flex: 2,
                                 contents: [
                                     {
-                                        type: 'box',
-                                        layout: 'baseline',
-                                        spacing: 'sm',
-                                        contents: [
-                                            {
-                                                type: 'text',
-                                                text: 'ผู้ป่วยใหม่',
-                                                flex: 0,
-                                                size: 'xl',
-                                                weight: 'bold',
-                                                color: '#D80F41',
-                                                wrap: true
-                                            },
-                                            {
-                                                type: 'text',
-                                                text: "dsfds",
-                                                flex: 1,
-                                                size: 'xl',
-                                                align: 'end',
-                                                weight: 'bold',
-                                                color: '#009619',
-                                                wrap: true
-                                            }
-                                        ]
+                                        type: 'text',
+                                        text: 'ร้านอาหารหลากหลาย',
+                                        flex: 1,
+                                        size: 'xs',
+                                        gravity: 'top'
                                     },
                                     {
-                                        type: 'box',
-                                        layout: 'baseline',
-                                        spacing: 'sm',
-                                        contents: [
-                                            {
-                                                type: 'text',
-                                                text: 'รักษาหายแล้ว',
-                                                flex: 0,
-                                                size: 'xl',
-                                                weight: 'bold',
-                                                color: '#0400A8'
-                                            },
-                                            {
-                                                type: 'text',
-                                                text: "dsf",
-                                                flex: 5,
-                                                size: 'lg',
-                                                align: 'end',
-                                                weight: 'bold',
-                                                color: '#666666',
-                                                wrap: true
-                                            }
-                                        ]
+                                        type: 'separator'
+                                    },
+                                    {
+                                        type: 'text',
+                                        text: 'มีเมนูให้เลือกไม่ซ้ำ',
+                                        flex: 2,
+                                        size: 'xs',
+                                        gravity: 'center'
+                                    },
+                                    {
+                                        type: 'separator'
+                                    },
+                                    {
+                                        type: 'text',
+                                        text: 'ไม่ต้องโหลดแอพ',
+                                        flex: 2,
+                                        size: 'xs',
+                                        gravity: 'center'
+                                    },
+                                    {
+                                        type: 'separator'
+                                    },
+                                    {
+                                        type: 'text',
+                                        text: 'บริการรวดเร็ว',
+                                        flex: 1,
+                                        size: 'xs',
+                                        gravity: 'bottom'
                                     }
                                 ]
                             }
@@ -142,42 +143,24 @@ function Singleblog(props) {
                     },
                     footer: {
                         type: 'box',
-                        layout: 'vertical',
-                        flex: 0,
-                        spacing: 'sm',
+                        layout: 'horizontal',
                         contents: [
                             {
-                                type: 'spacer',
-                                size: 'sm'
-                            },
-                            {
                                 type: 'button',
                                 action: {
                                     type: 'uri',
-                                    label: 'รายงาน/Report',
-                                    uri: 'https://www.worldometers.info/coronavirus/country/thailand/'
+                                    label: 'Order now',
+                                    uri: 'https://lin.ee/36M5ly2'
                                 },
-                                color: '#1B7445',
-                                height: 'sm',
+                                color: '#032250',
                                 style: 'primary'
-                            },
-                            {
-                                type: 'button',
-                                action: {
-                                    type: 'uri',
-                                    label: 'สวัสดิการ/Benefits',
-                                    uri: 'https://sproutstory.co/en/online-shop/store-front'
-                                },
-                                color: '#740812',
-                                height: 'sm',
-                                style: 'primary'
-                            },
+                            }
                         ]
                     }
                 }
             }
         ])
-    )
+
     };
     const location = useLocation();
     const { match } = props;
