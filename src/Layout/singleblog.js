@@ -159,7 +159,6 @@ function Singleblog(props) {
                     }
                 }
             }
-
         ])
 
     };
@@ -204,7 +203,7 @@ function Singleblog(props) {
                     </Typography>
                 </CardContent>
                 <Button size="small" color="primary"
-                        onClick={line}
+                        onClick={ () => line()}
                         aria-label="show more"
                 >
                     line share
