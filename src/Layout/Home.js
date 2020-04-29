@@ -36,11 +36,16 @@ function Home() {
     const [tag, settag] = useState('');
     const [detail, setdetail] = useState('');
     const history = useHistory();
+
+
+
     const sucess = (title,tag,detail,url,photoURL,uid,displayName) => {
         createPost(title,tag,detail,url,photoURL,uid,displayName)
         history.push("/");
         console.log("link")
     }
+
+
     const handChange = e => {
         const file = e.target.files[0];
         if (file) {
