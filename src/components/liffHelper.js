@@ -62,7 +62,7 @@ class liffHelper {
     liff.openWindow({ url, external });
   }
 
-  sendMessages(messages) {
+    sendMessages(messages) {
     const messagesToSend = Array.isArray(messages) ? messages : [messages];
     return new Promise((resolve, reject) => {
       this.init()
@@ -70,9 +70,11 @@ class liffHelper {
           liff.sendMessages(messagesToSend)
             .then(() => {
               resolve();
+              console.log("1234")
             })
             .catch((err) => {
               reject(err);
+              console.log("1")
             });
         })
         .catch((err) => {
