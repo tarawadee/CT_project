@@ -48,8 +48,8 @@ function Singleblog(props) {
     const [expanded, setExpanded] = React.useState(false);
 
 
-     const  sendMessage =() => {
-            liff.sendMessages([{
+     const sendMessage =() => {
+            liff.sendMessage([{
                 type: 'text',
                 text: "Hi LIFF"
             }]).then(() => {
