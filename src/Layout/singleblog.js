@@ -220,12 +220,14 @@ function Singleblog(props) {
                        <p>{Post.detail}</p>
                     </Typography>
                 </CardContent>
-
+                <Button size="small" color="primary"
+                        onClick={ () => line()}
+                        aria-label="show more"
+                >
+                    line share
+                </Button>
             </Card>
-            <Button size="small" color="primary"
-                    onClick={ () => line()}
-                    aria-label="show more"
-            />
+
         </Container>
 
 
