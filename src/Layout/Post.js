@@ -14,9 +14,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Collapse from '@material-ui/core/Collapse';
 import Grid from '@material-ui/core/Grid';
 import firebase from "firebase";
-
 import {useHistory} from "react-router-dom";
-
+const liff = window.liff;
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
@@ -44,6 +43,8 @@ function Post(props) {
 
     const readmore = (documentId) => {
         history.push(`/posts/${documentId}`);
+        const idToken = liff.getDecodedIDToken();
+        console.log(idToken)
     };
     useEffect(() => {
 
@@ -83,47 +84,7 @@ console.log(checkuser)
         console.log(id)
     };
 
-    const renderdeletenulluser = () => {
-        return(
-            <CardActions>
-                    <Button onClick={ () => Deletepost(post.key)} size="small" color="secondary">
-                        ลบ
-                    </Button>
-                ) : (
-                    <p></p>
 
-
-                <Button size="small" color="primary"
-                        onClick={ () => readmore(post.key)}
-                        aria-label="show more"
-                >
-                    Learn More
-                </Button>
-            </CardActions>
-        )
-
-    };
-    const renderdeleuser = () => {
-        return(
-            <CardActions>
-                {post.uid==1 ? (
-                    <Button onClick={ () => Deletepost(post.key)} size="small" color="secondary">
-                        ลบ
-                    </Button>
-                ) : (
-                    <p></p>
-                )}
-
-                <Button size="small" color="primary"
-                        onClick={ () => readmore(post.key)}
-                        aria-label="show more"
-                >
-                    Learn More
-                </Button>
-            </CardActions>
-        )
-
-    };
     return (
 
         <div className="post-form">

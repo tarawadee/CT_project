@@ -124,7 +124,7 @@ function Home() {
                     </div>
                     <div className="form-control">
                         <label htmlFor="tag">Detail</label>
-                        <textarea type="text" id="title" onChange={e =>setdetail(e.target.value)}  rows="4" cols="50"/>
+                        <textarea type="text" pattern="[^()/><\][\\\x22,;|]+" onChange={e =>setdetail(e.target.value)}  rows="4" cols="50"/>
                     </div>
                         <div>
                             <input type="file" onChange={handChange} />{" "}

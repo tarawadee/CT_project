@@ -19,6 +19,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Button from "@material-ui/core/Button";
+const liff = window.liff;
 const useStyles = makeStyles((theme) => ({
     root: {
 
@@ -48,8 +50,135 @@ function Singleblog(props) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
+    const line = () => {
+        liff.sendMessages([
+            {
+                type: 'flex',
+                altText: 'Flex Message',
+                contents: {
+                    type: 'bubble',
+                    hero: {
+                        type: 'image',
+                        url: 'https://d2v9ipibika81v.cloudfront.net/uploads/sites/269/750x450_covid.jpg',
+                        size: 'full',
+                        aspectRatio: '20:13',
+                        aspectMode: 'cover',
+                        action: {
+                            type: 'uri',
+                            label: 'Line',
+                            uri: 'https://linecorp.com/'
+                        }
+                    },
+                    body: {
+                        type: 'box',
+                        layout: 'vertical',
+                        contents: [
+                            {
+                                type: 'text',
+                                text: 'Covid19 Cases',
+                                size: 'xxl',
+                                align: 'center',
+                                weight: 'bold',
+                                color: '#0F9265'
+                            },
+                            {
+                                type: 'box',
+                                layout: 'vertical',
+                                spacing: 'sm',
+                                margin: 'lg',
+                                contents: [
+                                    {
+                                        type: 'box',
+                                        layout: 'baseline',
+                                        spacing: 'sm',
+                                        contents: [
+                                            {
+                                                type: 'text',
+                                                text: 'ผู้ป่วยใหม่',
+                                                flex: 0,
+                                                size: 'xl',
+                                                weight: 'bold',
+                                                color: '#D80F41',
+                                                wrap: true
+                                            },
+                                            {
+                                                type: 'text',
+                                                text: "dsfds",
+                                                flex: 1,
+                                                size: 'xl',
+                                                align: 'end',
+                                                weight: 'bold',
+                                                color: '#009619',
+                                                wrap: true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        type: 'box',
+                                        layout: 'baseline',
+                                        spacing: 'sm',
+                                        contents: [
+                                            {
+                                                type: 'text',
+                                                text: 'รักษาหายแล้ว',
+                                                flex: 0,
+                                                size: 'xl',
+                                                weight: 'bold',
+                                                color: '#0400A8'
+                                            },
+                                            {
+                                                type: 'text',
+                                                text: "dsf",
+                                                flex: 5,
+                                                size: 'lg',
+                                                align: 'end',
+                                                weight: 'bold',
+                                                color: '#666666',
+                                                wrap: true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    footer: {
+                        type: 'box',
+                        layout: 'vertical',
+                        flex: 0,
+                        spacing: 'sm',
+                        contents: [
+                            {
+                                type: 'spacer',
+                                size: 'sm'
+                            },
+                            {
+                                type: 'button',
+                                action: {
+                                    type: 'uri',
+                                    label: 'รายงาน/Report',
+                                    uri: 'https://www.worldometers.info/coronavirus/country/thailand/'
+                                },
+                                color: '#1B7445',
+                                height: 'sm',
+                                style: 'primary'
+                            },
+                            {
+                                type: 'button',
+                                action: {
+                                    type: 'uri',
+                                    label: 'สวัสดิการ/Benefits',
+                                    uri: 'https://sproutstory.co/en/online-shop/store-front'
+                                },
+                                color: '#740812',
+                                height: 'sm',
+                                style: 'primary'
+                            },
+                        ]
+                    }
+                }
+            }
+        ]);
     };
     const location = useLocation();
     const { match } = props;
@@ -93,7 +222,10 @@ function Singleblog(props) {
                 </CardContent>
 
             </Card>
-
+            <Button size="small" color="primary"
+                    onClick={ () => line()}
+                    aria-label="show more"
+            />
         </Container>
 
 
