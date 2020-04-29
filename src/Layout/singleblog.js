@@ -47,6 +47,20 @@ function Singleblog(props) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
+
+    const location = useLocation();
+    const { match } = props;
+    const [Params, setParams] = useState('');
+    const [Post, setPost] = useState('');
+    let { documentId } = match.params
+
+    useEffect(() => {
+        getpostbyid(documentId).then((docRef) => {
+            setPost(docRef.data())
+        })
+            .catch((error) => {
+            })
+    });
     const line = () => {
 
         liff.sendMessages([
@@ -57,7 +71,7 @@ function Singleblog(props) {
                     type: 'bubble',
                     hero: {
                         type: 'image',
-                        url: 'https://s3-ap-southeast-1.amazonaws.com/img-in-th/17bdc2efae15a634fdbc1d586d958f4c.jpg',
+                        url: `${Post.url}`,
                         size: 'full',
                         aspectRatio: '1:1',
                         backgroundColor: '#d6cd29',
@@ -102,7 +116,7 @@ function Singleblog(props) {
                                 contents: [
                                     {
                                         type: 'text',
-                                        text: 'ร้านอาหารหลากหลาย',
+                                        text: `${Post.title}`,
                                         flex: 1,
                                         size: 'xs',
                                         gravity: 'top'
@@ -162,20 +176,6 @@ function Singleblog(props) {
         ])
 
     };
-    const location = useLocation();
-    const { match } = props;
-    const [Params, setParams] = useState('');
-    const [Post, setPost] = useState('');
-    let { documentId } = match.params
-
-    useEffect(() => {
-        getpostbyid(documentId).then((docRef) => {
-            setPost(docRef.data())
-        })
-            .catch((error) => {
-            })
-    });
-
     return (
 
         <Container fixed style={{marginTop:10}}>
