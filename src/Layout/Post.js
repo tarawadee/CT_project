@@ -38,12 +38,10 @@ function Post(props) {
     const classes = useStyles();
     const history = useHistory();
     const [ Post, setPost ] = useState({ post: [] });
-    const [checkuser, setcheckuser] = useState('');
-    const [expanded, setExpanded] = useState(false);
+    const [checkuser, setcheckuser] = useState( [ { uid: 'Bob' } ]);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
+
+
     const readmore = (documentId) => {
         history.push(`/posts/${documentId}`);
     };
@@ -68,20 +66,64 @@ function Post(props) {
         }
     }, [])
     useEffect(() => {
+
         firebase.auth().onAuthStateChanged(user => {
-            setcheckuser(user);
-            console.log("user", user)
+            if(user!=null) {
+                setcheckuser(user);
+            }
 
         })
+console.log(checkuser)
     });
 
     const post = Object.entries(Post).map(([key, value]) => ({key, ...value}));
+
     const Deletepost = (id) => {
         Delete(id)
         console.log(id)
     };
 
+    const renderdeletenulluser = () => {
+        return(
+            <CardActions>
+                    <Button onClick={ () => Deletepost(post.key)} size="small" color="secondary">
+                        ลบ
+                    </Button>
+                ) : (
+                    <p></p>
 
+
+                <Button size="small" color="primary"
+                        onClick={ () => readmore(post.key)}
+                        aria-label="show more"
+                >
+                    Learn More
+                </Button>
+            </CardActions>
+        )
+
+    };
+    const renderdeleuser = () => {
+        return(
+            <CardActions>
+                {post.uid==1 ? (
+                    <Button onClick={ () => Deletepost(post.key)} size="small" color="secondary">
+                        ลบ
+                    </Button>
+                ) : (
+                    <p></p>
+                )}
+
+                <Button size="small" color="primary"
+                        onClick={ () => readmore(post.key)}
+                        aria-label="show more"
+                >
+                    Learn More
+                </Button>
+            </CardActions>
+        )
+
+    };
     return (
 
         <div className="post-form">
@@ -113,13 +155,15 @@ function Post(props) {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
+
                             {post.uid==checkuser.uid ? (
-                                <Button onClick={ () => Deletepost(post.key)} size="small" color="secondary">
-                                    ลบ
+                                <Button onClick={() => Deletepost(post.key)} size="small" color="secondary">
+                                ลบ
                                 </Button>
-                            ) : (
-                               <p></p>
-                            )}
+                                ) : (
+                                <p></p>
+                                )}
+
 
                             <Button size="small" color="primary"
                                     onClick={ () => readmore(post.key)}
@@ -128,6 +172,7 @@ function Post(props) {
                                 Learn More
                             </Button>
                         </CardActions>
+
 
                     </Card>
                     </Grid>

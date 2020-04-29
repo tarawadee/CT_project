@@ -87,8 +87,14 @@ function Home() {
     };
     useEffect(() => {
         firebase.auth().onAuthStateChanged(user => {
-            setuser(user);
-            console.log("user", user)
+            if(user!=null) {
+                setuser(user);
+            }
+            else
+            {
+                history.push("/login");
+            }
+
 
         })
     });
