@@ -2,11 +2,19 @@
 
 Process
 -make login function UI with component 
+-blog covid news 
+-share news to line app with liff 
+-Firebase auth with Firebase Ui
+
+
+
+api : https://covid19.th-stat.com/api/open/today
 
 
 
 
 Link my web : https://tarawadee-5635512138.netlify.com/
+liff link open in line app :https://liff.line.me/1593863417-08KvJRX1
 
 UI:https://material-ui.com/
 Ref: https://www.udemy.com/course/react-the-complete-guide-incl-redux

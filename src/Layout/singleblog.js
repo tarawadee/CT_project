@@ -89,7 +89,8 @@ function Singleblog(props) {
                                 type: 'text',
                                 text: `${Post.title}`,
                                 size: 'xl',
-                                weight: 'bold'
+                                weight: 'bold',
+                                wrap: true
                             },
                             {
                                 type: 'box',
