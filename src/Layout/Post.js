@@ -83,7 +83,9 @@ console.log(checkuser)
         Delete(id)
         console.log(id)
     };
-
+    const Editpost = (documentId) => {
+        history.push(`/editpost/${documentId}`);
+    };
 
     return (
 
@@ -118,9 +120,14 @@ console.log(checkuser)
                         <CardActions>
 
                             {post.uid==checkuser.uid ? (
+                                <div>
                                 <Button onClick={() => Deletepost(post.key)} size="small" color="secondary">
                                 ลบ
                                 </Button>
+                                <Button onClick={() => Editpost(post.key)} size="small" color="secondary">
+                                    แก้ไข
+                                 </Button>
+                                    </div>
                                 ) : (
                                 <p></p>
                                 )}

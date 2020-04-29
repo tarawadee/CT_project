@@ -5,6 +5,7 @@ import Home from "./Layout/Home";
 import Post from "./Layout/Post";
 import Singleblog from "./Layout/singleblog";
 import { Route } from 'react-router-dom'
+import EditPost from "./Layout/Editpost";
 import Header from "./components/UI/Header";
 
 
@@ -18,6 +19,7 @@ class App extends Component {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/post" component={Home} />
                 <Route exact path="/posts/:documentId" component={Singleblog}/>
+                <Route exact path="/editpost/:documentId" component={EditPost}/>
                 <Route exact path="/" component={Post} />
 
 

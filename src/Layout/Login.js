@@ -47,7 +47,6 @@ function Login()
     return (
         <div className="login-form">
            <Card>
-               {/*<h1>{user.displayName}</h1>*/}
                <p>Please sign-in:</p>
                <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
            </Card>

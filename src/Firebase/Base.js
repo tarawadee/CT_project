@@ -36,6 +36,20 @@ export const createPost = (title,tag,detail,url,photoURL,uid,displayName) => {
         });
 };
 
+export const updatePost = (title,tag,detail,url,photoURL,uid,displayName,docid) => {
+    return db.collection('Post').doc(docid)
+        .update({
+            title: title,
+            tag: tag,
+            detail: detail,
+            url: url,
+            photoURL:photoURL,
+            uid:uid,
+            displayName:displayName,
+            created: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+};
+
 export const getdataPost = db.collection('Post');
 export const getpostbyid = (id) =>{
     return db.collection('Post').doc(id).get()
