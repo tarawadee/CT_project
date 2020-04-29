@@ -66,90 +66,52 @@ function Singleblog(props) {
         liff.sendMessages([
             {
                 type: 'flex',
-                altText: 'Food Delivery',
+                altText: `${Post.title}`,
                 contents: {
                     type: 'bubble',
                     hero: {
                         type: 'image',
                         url: `${Post.url}`,
                         size: 'full',
-                        aspectRatio: '1:1',
-                        backgroundColor: '#d6cd29',
+                        aspectRatio: '20:13',
+                        aspectMode: 'cover',
                         action: {
                             type: 'uri',
-                            label: 'Action',
-                            uri: 'https://sproutstory.co/en/eating'
+                            label: 'Line',
+                            uri: 'https://liff.line.me/1593863417-08KvJRX1'
                         }
                     },
                     body: {
                         type: 'box',
-                        layout: 'horizontal',
-                        spacing: 'md',
+                        layout: 'vertical',
                         contents: [
                             {
-                                type: 'box',
-                                layout: 'vertical',
-                                flex: 1,
-                                contents: [
-                                    {
-                                        type: 'image',
-                                        url: 'https://s3-ap-southeast-1.amazonaws.com/img-in-th/68987007116cf02b0da2be98db7a9cc4.jpg',
-                                        gravity: 'bottom',
-                                        size: 'sm',
-                                        aspectRatio: '4:3',
-                                        aspectMode: 'cover'
-                                    },
-                                    {
-                                        type: 'image',
-                                        url: 'https://s3-ap-southeast-1.amazonaws.com/img-in-th/c3b90b94e8c605558c02c9a42773ff19.png',
-                                        margin: 'md',
-                                        size: 'sm',
-                                        aspectRatio: '4:3',
-                                        aspectMode: 'cover'
-                                    }
-                                ]
+                                type: 'text',
+                                text: `${Post.title}`,
+                                size: 'xl',
+                                weight: 'bold'
                             },
                             {
                                 type: 'box',
                                 layout: 'vertical',
-                                flex: 2,
+                                spacing: 'sm',
+                                margin: 'lg',
                                 contents: [
                                     {
-                                        type: 'text',
-                                        text: `${Post.title}`,
-                                        flex: 1,
-                                        size: 'xs',
-                                        gravity: 'top'
-                                    },
-                                    {
-                                        type: 'separator'
-                                    },
-                                    {
-                                        type: 'text',
-                                        text: 'มีเมนูให้เลือกไม่ซ้ำ',
-                                        flex: 2,
-                                        size: 'xs',
-                                        gravity: 'center'
-                                    },
-                                    {
-                                        type: 'separator'
-                                    },
-                                    {
-                                        type: 'text',
-                                        text: 'ไม่ต้องโหลดแอพ',
-                                        flex: 2,
-                                        size: 'xs',
-                                        gravity: 'center'
-                                    },
-                                    {
-                                        type: 'separator'
-                                    },
-                                    {
-                                        type: 'text',
-                                        text: 'บริการรวดเร็ว',
-                                        flex: 1,
-                                        size: 'xs',
-                                        gravity: 'bottom'
+                                        type: 'box',
+                                        layout: 'baseline',
+                                        spacing: 'sm',
+                                        contents: [
+                                            {
+                                                type: 'text',
+                                                text: `${Post.detail}`,
+                                                flex: 5,
+                                                size: 'sm',
+                                                weight: 'bold',
+                                                color: '#666666',
+                                                wrap: true
+                                            }
+                                        ]
                                     }
                                 ]
                             }
@@ -157,17 +119,24 @@ function Singleblog(props) {
                     },
                     footer: {
                         type: 'box',
-                        layout: 'horizontal',
+                        layout: 'vertical',
+                        flex: 0,
+                        spacing: 'sm',
                         contents: [
                             {
                                 type: 'button',
                                 action: {
                                     type: 'uri',
-                                    label: 'Order now',
-                                    uri: 'https://lin.ee/36M5ly2'
+                                    label: 'อ่านข่าว',
+                                    uri: 'https://liff.line.me/1593863417-08KvJRX1'
                                 },
-                                color: '#032250',
+                                color: '#272490',
+                                height: 'sm',
                                 style: 'primary'
+                            },
+                            {
+                                type: 'spacer',
+                                size: 'sm'
                             }
                         ]
                     }
