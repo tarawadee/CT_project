@@ -17,6 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import liffHelper from "../components/liffHelper";
 import Button from "@material-ui/core/Button";
+
 const liff = window.liff;
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,7 +49,7 @@ function Singleblog(props) {
     const [expanded, setExpanded] = React.useState(false);
 
 
-     const sendMessage =() => {
+   const sendMessage =() => {
             liff.sendMessages([{
                 type: 'text',
                 text: "Hi LIFF"
