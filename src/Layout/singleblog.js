@@ -48,6 +48,7 @@ function Singleblog(props) {
     const [expanded, setExpanded] = React.useState(false);
 
     const line = () => {
+       return(
         liff.sendMessages([
             {
                 type: 'flex',
@@ -175,7 +176,8 @@ function Singleblog(props) {
                     }
                 }
             }
-        ]);
+        ])
+    )
     };
     const location = useLocation();
     const { match } = props;
