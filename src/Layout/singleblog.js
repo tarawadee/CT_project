@@ -159,7 +159,9 @@ function Singleblog(props) {
                     }
                 }
             }
+
         ])
+        liff.closeWindow();
 
     };
     const location = useLocation();
