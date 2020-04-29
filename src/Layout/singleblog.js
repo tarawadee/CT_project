@@ -48,7 +48,7 @@ function Singleblog(props) {
     const [expanded, setExpanded] = React.useState(false);
 
     const line = () => {
-
+       return(
         liff.sendMessages([
             {
                 type: 'flex',
@@ -161,7 +161,8 @@ function Singleblog(props) {
             }
 
         ])
-        liff.closeWindow();
+        liff.closeWindow()
+    )
 
     };
     const location = useLocation();
